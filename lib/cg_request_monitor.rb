@@ -7,7 +7,7 @@ module CgRequestMonitor
   mattr_accessor :request_actions
 
   def self.request_length
-    @@request_length ||= 5
+    @@request_length ||= 10
   end
 
   def self.request_actions
