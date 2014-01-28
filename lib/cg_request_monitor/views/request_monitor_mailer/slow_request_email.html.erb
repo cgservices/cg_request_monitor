@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Slow request</h1>
+    <h3>Total request duration: <%= @request_duration.round(2) %></h3>
+    <table width='600px'>
+      <tr>
+        <td width=""><strong>Action</strong></td>
+        <td><strong>Duration</strong></td>
+        <td><strong>Payload</strong></td>
+      </tr>
+      <% @request_actions.each do |action| %>
+      <tr>
+        <td valign="top"><%= action[:name] %></td>
+        <td valign="top"><%= action[:duration].round(2) %></td>
+        <td valign="top">
+          <% action[:payload].keys.each do |k| %>
+            <strong><%= k %>:</strong> <%= action[:payload][k] %><br>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </body>
+</html>
