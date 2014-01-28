@@ -16,6 +16,7 @@ module CgRequestMonitor
 
   def self.monitor_email_address
     @@monitor_email_address ||= 'developers@cg.nl'
+  end
 end
 
 ActiveSupport::Notifications.subscribe do |name, start, finish, id, payload|
