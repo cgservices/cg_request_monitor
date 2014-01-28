@@ -3,7 +3,7 @@ require 'cg_request_monitor/mailer'
 require 'cg_request_monitor/railtie' if defined?(Rails)
 
 module CgRequestMonitor
-  mattr_accessor :insert_before, :insert_after, :request_length
+  mattr_accessor :insert_before, :insert_after, :request_length, :monitor_email_address
   mattr_accessor :request_actions
 
   def self.request_length
