@@ -10,7 +10,7 @@ module CgRequestMonitor
     def slow_request_email(request_actions, duration)
       @request_actions = request_actions
       @request_duration = duration
-      mail(to: 'luis@cg.nl', subject: "Slow request: #{duration.round(2)}") do |format|
+      mail(to: 'developers@cg.nl', subject: "Slow request: #{duration.round(2)}") do |format|
         format.text
         format.html
       end
