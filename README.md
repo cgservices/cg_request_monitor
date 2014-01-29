@@ -1,5 +1,6 @@
 # CG Request Monitor
 Gem to monitor request length using ActiveSupport::Notifiers
+All values displayed are in seconds.
 
 ## Installation
 
@@ -7,12 +8,17 @@ Gem to monitor request length using ActiveSupport::Notifiers
 gem 'cg_request_monitor', :git => "git@github.com:cgservices/cg_request_monitor.git"
 
 ## Usage
-The default for a long request is set at 60 seconds.
-To change this you can create an initializer in config/initializers with
+The gem uses certain defaults. To change this you can create an initializer in config/initializers with
 
-    CgRequestMonitor.request_length = 120
+Default trigger for request length is set at 60 seconds.
 
-You can define where to start and end the request monitor by defining
+    CgRequestMonitor.request_length = 30
 
-    CgRequestMonitor.insert_before = "Middleware::Name"
-    CgRequestMonitor.insert_after = "Middleware::Name"
+You can turn off the email notification (in case you don't need in certain environments):
+
+    CgRequestMonitor.send_email = true
+
+You can change the email address to which the notification is sent:
+
+    CgRequestMonitor.monitor_email_address = "your.email@address.com"
+
