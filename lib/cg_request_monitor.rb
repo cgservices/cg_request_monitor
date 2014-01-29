@@ -24,7 +24,7 @@ module CgRequestMonitor
 end
 
 ActiveSupport::Notifications.subscribe do |name, start, finish, id, payload|
-  duration = (finish - start)
+  duration = (finish - start).round(3)
   CgRequestMonitor.start = start if CgRequestMonitor.request_actions.empty?
   CgRequestMonitor.request_actions << {name: name, duration: duration, payload: payload, start: start, finish: finish}
 end

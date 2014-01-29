@@ -6,7 +6,7 @@ module CgRequestMonitor
       end
 
       def call(env)
-        request_duration = Time.now - CgRequestMonitor.start
+        request_duration = (Time.now - CgRequestMonitor.start).round(3)
         if request_duration >= CgRequestMonitor.request_length && CgRequestMonitor.send_email
           CgRequestMonitor::Mailer.slow_request_email(CgRequestMonitor.request_actions, request_duration).deliver
         end
