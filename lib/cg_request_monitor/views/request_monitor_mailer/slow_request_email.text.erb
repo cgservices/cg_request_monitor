@@ -1,13 +1,6 @@
 -- Slow request --
-
 Total duration: @request_duration
-
+Action;Duration;Time index;Payload
 <% @request_actions.each do |action| %>
-Action: <%= action[:name] %>
-Duration: <%= action[:duration] %>
-Payload:
-<% action[:payload].keys.each do |k| %>
-<%= k %>: <%= action[:payload][k] %>
+'<%= action[:name] %>';'<%= action[:duration] %>';'<%= action[:start] - CgRequestMonitor.start %>';'<% action[:payload].keys.each do |k| %><%= k %>: <%= action[:payload][k] %><% end %>'
 <% end %>
-<% end %>
------

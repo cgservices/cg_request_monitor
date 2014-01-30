@@ -6,16 +6,18 @@
   <body>
     <h1>Slow request</h1>
     <h3>Total request duration: <%= @request_duration %></h3>
-    <table width='600px'>
+    <table width='700px'>
       <tr>
-        <td width=""><strong>Action</strong></td>
-        <td><strong>Duration</strong></td>
-        <td><strong>Payload</strong></td>
+        <td width="100"><strong>Action</strong></td>
+        <td width="100"><strong>Duration</strong></td>
+        <td width="100"><strong>Time index</strong></td>
+        <td width="300"><strong>Payload</strong></td>
       </tr>
       <% @request_actions.each do |action| %>
       <tr>
         <td valign="top"><%= action[:name] %></td>
         <td valign="top"><%= action[:duration] %></td>
+        <td valign="top"><%= action[:start] - CgRequestMonitor.start %></td>
         <td valign="top">
           <% action[:payload].keys.each do |k| %>
             <strong><%= k %>:</strong> <%= action[:payload][k] %><br>
