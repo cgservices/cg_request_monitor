@@ -3,7 +3,7 @@ require 'cg_request_monitor/mailer'
 require 'cg_request_monitor/railtie' if defined?(Rails)
 
 module CgRequestMonitor
-  mattr_accessor :insert_before, :insert_after, :request_length, :monitor_email_address, :send_email
+  mattr_accessor :insert_before, :insert_after, :request_length, :monitor_email_address, :send_email, :html_email
   mattr_accessor :request_actions, :start
 
   def self.request_length
@@ -21,11 +21,14 @@ module CgRequestMonitor
   def self.monitor_email_address
     @@monitor_email_address ||= "your.email@address.com"
   end
+
+  def self.html_email
+    @@html_email ||= false
+  end
 end
 
 ActiveSupport::Notifications.subscribe do |name, start, finish, id, payload|
   duration = (finish - start).round(3)
   CgRequestMonitor.start = start if CgRequestMonitor.request_actions.empty? || start < CgRequestMonitor.start
-
   CgRequestMonitor.request_actions << {name: name, duration: duration, payload: payload, start: start, finish: finish}
 end
