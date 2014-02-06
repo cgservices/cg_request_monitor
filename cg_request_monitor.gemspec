@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = 'cg_request_monitor'
   gem.require_paths = ['lib']
-  gem.version       = "0.0.8"
+  gem.version       = "0.0.9"
 
   gem.add_dependency('rails', ['>= 3.0.0'])
 

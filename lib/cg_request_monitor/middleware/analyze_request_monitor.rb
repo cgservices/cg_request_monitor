@@ -13,7 +13,7 @@ module CgRequestMonitor
           request_duration = (Time.now - CgRequestMonitor.start).round(3)
           if request_duration >= CgRequestMonitor.request_length && CgRequestMonitor.send_email
             notifications = CgRequestMonitor.request_actions.sort_by{|action| (action[:start] - CgRequestMonitor.start)}
-            CgRequestMonitor::Mailer.slow_request_email(notifications, request_duration, parsed_uri).deliver
+            CgRequestMonitor::Mailer.slow_request_email(notifications, request_duration, parsed_uri, request.headers).deliver
           end
           CgRequestMonitor.request_actions = []
         end

@@ -1,5 +1,12 @@
-<%= @request_uri %>
+<%= @request_uri unless @request_uri.blank? %>
 
+--
+<% unless @request_headers.blank? %>
+  <% for header in @request_headers.select { |key, val| key.match("^HTTP.*")} %>
+    <%= header[0] %> <%= header[1] %>
+  <% end %>
+--
+<% end %>
 Action;Duration;Time index;Payload
 <% @request_actions.each do |action| %>
 '<%= action[:name] %>';'<%= action[:duration] %>';'<%= action[:start] - CgRequestMonitor.start %>';'<% action[:payload].keys.each do |k| %><%= "#{k}: #{action[:payload][k]} " %><% end %>'

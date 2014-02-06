@@ -7,10 +7,12 @@ module CgRequestMonitor
 
     default from: 'developers@condooms.nl'
 
-    def slow_request_email(request_actions, duration, request_uri = "")
+    def slow_request_email(request_actions, duration, request_uri = "", request_headers = {})
       @request_actions = request_actions
       @request_duration = duration
       @request_uri = request_uri
+      @request_headers = request_headers
+
       mail(to: CgRequestMonitor.monitor_email_address, subject: "[#{Rails.env}] Slow request: #{duration.round(2)}") do |format|
         format.text
         format.html if CgRequestMonitor.html_email
